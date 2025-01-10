@@ -1,18 +1,24 @@
-package com.example.task.model;
+package com.example.taskMangaer.model;
 
 import jakarta.persistence.*;
 import java.util.*;
 
 
-@Entity 
+@Entity
 
 public class Task {
     @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name="taskid")
     int taskId;
-    @Column (name="taskAssignedFrom")
-    String taskAssignedFrom;
+    @Column (name="taskAssignedById")
+    String taskAssignedById;
+    @Column (name="taskAssignedByEmail")
+    String taskAssignedByEmail;
+    @Column (name="taskAssignedByName")
+    String taskAssignedByName;
+    @Column(name="personId")
+    String personId;
     @Column(name="personName")
     String personName;
     @Column(name="personEmail")
@@ -31,9 +37,12 @@ public class Task {
     boolean taskStatus;
     public Task(){}
 
-    public Task(int taskId, String taskAssignedFrom, String personName, String personEmail, String taskName, String taskDetails, Date effectiveDate, Date dueDate, boolean taskStatus){
+    public Task(int taskId, String taskAssignedId, String taskAssignedByEmail, String taskAssignedByName, String personId, String personName, String personEmail, String taskName, String taskDetails, Date effectiveDate, Date dueDate, boolean taskStatus){
         this.taskId=taskId;
-        this.taskAssignedFrom=taskAssignedFrom;
+        this.taskAssignedById=taskAssignedById;
+        this.taskAssignedByEmail=taskAssignedByEmail;
+        this.taskAssignedByName=taskAssignedByName;
+        this.personId=personId;
         this.personName=personName;
         this.personEmail=personEmail;
         this.taskName=taskName;
@@ -51,12 +60,36 @@ public class Task {
         this.taskId=taskId;
     }
 
-    public String getTaskAssignedFrom(){
-        return taskAssignedFrom;
+    public String getTaskAssignedById(){
+        return taskAssignedById;
     }
 
-    public void setTaskAssignedFrom(String taskAssignedFrom){
-        this.taskAssignedFrom=taskAssignedFrom;
+    public void setTaskAssignedById(String taskAssignedById){
+        this.taskAssignedById=taskAssignedById;
+    }
+
+    public String getTaskAssignedByEmail(){
+        return taskAssignedByEmail;
+    }
+
+    public void setTaskAssignedByEmail(String taskAssignedByEmail){
+        this.taskAssignedByEmail=taskAssignedByEmail;
+    }
+
+    public String getTaskAssignedByName(){
+        return taskAssignedByName;
+    }
+
+    public void setTaskAssignedByName(String taskAssignedByName){
+        this.taskAssignedByName=taskAssignedByName;
+    }
+
+    public String getPersonId(){
+        return personId;
+    }
+
+    public void setPersonId(String personId){
+        this.personId=personId;
     }
 
     public String getPersonName(){

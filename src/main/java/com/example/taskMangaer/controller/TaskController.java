@@ -1,13 +1,15 @@
-package com.example.task.controller;
+package com.example.taskMangaer.controller;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-  import org.springframework.web.bind.annotation.*;
-  import java.util.*;
+import org.springframework.web.bind.annotation.*;
+
+import com.example.taskMangaer.model.*;
+import com.example.taskMangaer.service.*;
+
+import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import com.example.task.model.*;
-  import com.example.task.service.*;
 
 
 
@@ -16,7 +18,7 @@ import com.example.task.model.*;
   @CrossOrigin
   @RequestMapping("apis/employees")
 public class TaskController {
-    @Autowired 
+    @Autowired
     public TaskJpaService taskService;
 
     @GetMapping("/tasks")
@@ -81,19 +83,24 @@ public class TaskController {
         return taskService.getCompletedTasksAssignedFrom(email);
     }
 
-    @GetMapping("/OverdueTasks/PersonEmail/{email}")
-    public List getOverDuePersonEmail(@PathVariable String email) {
-        return taskService.getOverDueTasksPersonEmail(email);
+    @GetMapping("/OverdueTasks/PersonId/{personId}")
+    public List getOverDuePersonEmail(@PathVariable String personId) {
+        return taskService.getOverDueTasksPersonId(personId);
     }
 
-    @GetMapping("/PendingTasks/PersonEmail/{email}")
-    public List getPendingPersonEmail(@PathVariable String email) {
-        return taskService.getPendingTasksPersonEmail(email);
+    @GetMapping("/PendingTasks/PersonId/{personId}")
+    public List getPendingPersonEmail(@PathVariable String personId) {
+        return taskService.getPendingTasksPersonId(personId);
     }
 
-    @GetMapping("/CompletedTasks/PersonEmail/{email}")
-    public List getCompletedTasksPersonEmail(@PathVariable String email) {
-        return taskService.getCompletedTasksPersonEmail(email);
+    @GetMapping("/CompletedTasks/PersonId/{personId}")
+    public List getCompletedTasksPersonId(@PathVariable String personId) {
+        return taskService.getCompletedTasksPersonId(personId);
+    }
+
+    @GetMapping("/TasksDetails/PersonId/{personId}")
+    public HashMap<String,Integer> getTasksEfficiency(@PathVariable String personId) {
+        return taskService.getTasksEfficiency(personId);
     }
     
 
